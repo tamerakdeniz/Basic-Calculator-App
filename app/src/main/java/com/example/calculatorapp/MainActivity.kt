@@ -14,14 +14,10 @@ class MainActivity : AppCompatActivity() {
     private var firstNumber = 0.0
     private var operation = ""
     private var isNewOperation = true
-    
-    // Keep references to operation button CardViews to change their background when selected
     private lateinit var btnAddCardView: CardView
     private lateinit var btnSubtractCardView: CardView
     private lateinit var btnMultiplyCardView: CardView
     private lateinit var btnDivideCardView: CardView
-    
-    // Colors
     private val defaultButtonColor = Color.parseColor("#303030")
     private val selectedButtonColor = Color.parseColor("#03DAC5")
     
@@ -31,14 +27,11 @@ class MainActivity : AppCompatActivity() {
         
         tvResult = findViewById(R.id.tvResult)
         tvOperation = findViewById(R.id.tvOperation)
-        
-        // Get references to operation CardViews
         btnAddCardView = findViewById<Button>(R.id.btnAdd).parent as CardView
         btnSubtractCardView = findViewById<Button>(R.id.btnSubtract).parent as CardView
         btnMultiplyCardView = findViewById<Button>(R.id.btnMultiply).parent as CardView
         btnDivideCardView = findViewById<Button>(R.id.btnDivide).parent as CardView
-        
-        // Number buttons
+
         setupNumberButton(R.id.btn0, "0")
         setupNumberButton(R.id.btn1, "1")
         setupNumberButton(R.id.btn2, "2")
@@ -49,19 +42,16 @@ class MainActivity : AppCompatActivity() {
         setupNumberButton(R.id.btn7, "7")
         setupNumberButton(R.id.btn8, "8")
         setupNumberButton(R.id.btn9, "9")
-        
-        // Operation buttons
+
         setupOperationButton(R.id.btnAdd, "+")
         setupOperationButton(R.id.btnSubtract, "-")
         setupOperationButton(R.id.btnMultiply, "×")
         setupOperationButton(R.id.btnDivide, "÷")
-        
-        // Equal button
+
         findViewById<Button>(R.id.btnEquals).setOnClickListener {
             calculateResult()
         }
-        
-        // Clear button
+
         findViewById<Button>(R.id.btnClear).setOnClickListener {
             tvResult.text = "0"
             tvOperation.text = ""
@@ -91,16 +81,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(buttonId).setOnClickListener {
             firstNumber = tvResult.text.toString().toDouble()
             operation = op
-            
-            // Show the operation and first number in the operation TextView
+
             val displayText = if (firstNumber == firstNumber.toInt().toDouble()) {
                 "${firstNumber.toInt()} $operation"
             } else {
                 "$firstNumber $operation"
             }
             tvOperation.text = displayText
-            
-            // Reset all operation button colors and highlight the selected one
+
             resetOperationButtonColors()
             when (buttonId) {
                 R.id.btnAdd -> btnAddCardView.setCardBackgroundColor(selectedButtonColor)
@@ -123,8 +111,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculateResult() {
         if (operation.isNotEmpty()) {
             val secondNumber = tvResult.text.toString().toDouble()
-            
-            // Update the operation display to show the complete calculation
+
             val displayText = if (firstNumber == firstNumber.toInt().toDouble() && secondNumber == secondNumber.toInt().toDouble()) {
                 "${firstNumber.toInt()} $operation ${secondNumber.toInt()} ="
             } else if (firstNumber == firstNumber.toInt().toDouble()) {
@@ -145,10 +132,8 @@ class MainActivity : AppCompatActivity() {
             }
             
             tvResult.text = if (result == result.toInt().toDouble()) {
-                // If result is a whole number, display as integer
                 result.toInt().toString()
             } else {
-                // Otherwise display with decimal places
                 result.toString()
             }
             
