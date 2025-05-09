@@ -45,12 +45,6 @@ A modern, stylish, and user-friendly basic calculator app for Android. Perform t
 
 ---
 
-## 🌐 Project Repository
-
-[🔗 GitHub Repo](https://github.com/tamerakdeniz/Basic-Calculator-App)
-
----
-
 ## ✨ Screenshots
 
 ![image](https://github.com/user-attachments/assets/e90eb099-62e7-4a5e-9a5f-9697405e4bd3)
